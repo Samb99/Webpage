@@ -26,6 +26,30 @@
 		id: 'mapbox/streets-v11',
 		tileSize: 512,
 		zoomOffset: -1
+		
+	<p>Click the button to get your coordinates.</p>
+
+<button onclick="getLocation()">Try It</button>
+
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude;
+}
+</script>
+		
 	}).addTo(mymap);
 	var marker = L.marker([51.130606 , -2.7329655]).addTo(mymap);   
 	marker.bindPopup("<img style='width: 300px' src='TheatreStrode.jpg'/><br /><b>Strode Theatre</b>").openPopup();	
